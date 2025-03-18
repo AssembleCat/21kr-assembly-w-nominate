@@ -1,6 +1,10 @@
 # API 키 파일
 api_key.txt
 
+# API 응답 데이터, W-NOMINATE 결과 데이터
+# LFS 기본 용량을 초과하여 git에 올리지않음.
+src/data/
+
 # Created by https://www.toptal.com/developers/gitignore/api/pycharm
 # Edit at https://www.toptal.com/developers/gitignore?templates=pycharm
 
