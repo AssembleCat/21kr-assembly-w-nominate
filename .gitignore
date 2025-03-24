@@ -3,7 +3,9 @@ api_key.txt
 
 # API 응답 데이터, W-NOMINATE 결과 데이터
 # LFS 기본 용량을 초과하여 git에 올리지않음.
-src/data/
+src/data/api_data
+src/data/temp
+
 
 # R 임시파일
 .Rhistory
