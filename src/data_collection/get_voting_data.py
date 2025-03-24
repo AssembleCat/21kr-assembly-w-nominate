@@ -6,7 +6,7 @@ from datetime import datetime
 import time
 
 def read_api_key():
-    with open('../api_key.txt', 'r') as f:
+    with open('../../api_key.txt', 'r') as f:
         return f.read().strip()
 
 def get_voting_info_for_bill(api_key, bill_id, age='21', max_retries=3, retry_delay=2):
@@ -96,7 +96,7 @@ def collect_voting_data_for_bills(api_key, bills_csv):
     empty_count = 0
     
     # 진행 상황을 저장할 파일 생성
-    progress_file = "../data/voting_collection_progress.txt"
+    progress_file = "../../data/voting_collection_progress.txt"
     with open(progress_file, 'w', encoding='utf-8') as f:
         f.write(f"21대 국회 표결정보 수집 진행 상황\n")
         f.write(f"시작 시간: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n\n")
@@ -128,7 +128,7 @@ def collect_voting_data_for_bills(api_key, bills_csv):
             
             # 중간 저장 (100개 법안마다)
             if idx > 0 and idx % 100 == 0 and all_voting_data:
-                temp_filename = f"../data/voting_info_21_temp_{idx}.csv"
+                temp_filename = f"../../data/voting_info_21_temp_{idx}.csv"
                 temp_df = pd.DataFrame(all_voting_data)
                 temp_df.to_csv(temp_filename, index=False, encoding='utf-8-sig')
                 print(f"중간 저장: {temp_filename} ({len(all_voting_data)}개 데이터)")
@@ -172,16 +172,11 @@ def save_to_csv(data, filename=None):
     
     if filename is None:
         now = datetime.now().strftime("%Y%m%d_%H%M%S")
-        filename = f"data/voting_info_21_{now}.csv"
-    else:
-        filename = f"data/{filename}"
-    
-    os.makedirs(os.path.dirname(filename), exist_ok=True)
+        filename = f"../../data/voting_data_21_{now}.csv"
     
     df = pd.DataFrame(data)
     df.to_csv(filename, index=False, encoding='utf-8-sig')
-    print(f"{len(data)}개의 데이터가 {filename}에 저장되었습니다.")
-    
+    print(f"데이터가 '{filename}'에 저장되었습니다.")
     return filename
 
 def analyze_voting_data(data):
@@ -251,9 +246,7 @@ def save_analysis_to_txt(analysis, data, filename=None):
     
     if filename is None:
         now = datetime.now().strftime("%Y%m%d_%H%M%S")
-        filename = f"data/voting_analysis_{now}.txt"
-    else:
-        filename = f"data/{filename}"
+        filename = f"../../data/voting_analysis_{now}.txt"
     
     os.makedirs(os.path.dirname(filename), exist_ok=True)
     
@@ -294,7 +287,7 @@ def save_analysis_to_txt(analysis, data, filename=None):
                     break
             f.write(f"- {bill_no} ({bill_name}): {count}개 투표\n")
     
-    print(f"분석 결과가 {filename}에 저장되었습니다.")
+    print(f"분석 결과가 '{filename}'에 저장되었습니다.")
     return filename
 
 def main():
@@ -302,14 +295,21 @@ def main():
     
     print("21대 국회 본회의 표결정보 수집 시작...")
     
-    bills_csv = "../data/filtered_bills_20250317_175551.csv"
+    # 데이터 폴더 확인 및 생성
+    data_folder = "../../data/api_data"
+    if not os.path.exists(data_folder):
+        os.makedirs(data_folder)
+    
+    # 법률안 CSV 파일 지정
+    bills_csv = "../../data/filtered_bills_20250317_175438.csv"
+    
     voting_data = collect_voting_data_for_bills(api_key, bills_csv)
     
     if voting_data:
         print(f"\n총 {len(voting_data)}개의 표결정보를 수집했습니다.")
         
         now = datetime.now().strftime("%Y%m%d_%H%M%S")
-        csv_filename = f"voting_info_21_{now}.csv"
+        csv_filename = f"voting_data_21_{now}.csv"
         csv_path = save_to_csv(voting_data, csv_filename)
         
         analysis_results = analyze_voting_data(voting_data)

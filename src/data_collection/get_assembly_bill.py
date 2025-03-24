@@ -5,7 +5,7 @@ import json
 from datetime import datetime
 
 def read_api_key():
-    with open('../api_key.txt', 'r') as f:
+    with open('../../api_key.txt', 'r') as f:
         return f.read().strip()
 
 def get_assembly_bills(api_key, age='21'):
@@ -75,16 +75,15 @@ def save_to_csv(data, filename=None):
     
     if filename is None:
         now = datetime.now().strftime("%Y%m%d_%H%M%S")
-        filename = f"../data/assembly_bills_21_{now}.csv"
+        filename = f"../../data/assembly_bills_21_{now}.csv"
     else:
-        filename = f"../data/{filename}"
+        filename = f"../../data/{filename}"
     
     os.makedirs(os.path.dirname(filename), exist_ok=True)
     
     df = pd.DataFrame(data)
     df.to_csv(filename, index=False, encoding='utf-8-sig')
-    print(f"{len(data)}개의 데이터가 {filename}에 저장되었습니다.")
-    
+    print(f"데이터가 '{filename}'에 저장되었습니다.")
     return filename
 
 def analyze_bills(data):
@@ -144,6 +143,14 @@ def main():
         print("\n수집된 정보 필드:")
         for key in assembly_data[0].keys():
             print(f"- {key}")
+
+        # 분석 결과를 텍스트 파일로 저장
+        now = datetime.now().strftime("%Y%m%d_%H%M%S")
+        with open(f"../../data/bill_analysis_{now}.txt", "w", encoding="utf-8") as f:
+            f.write(f"총 {len(assembly_data)}개의 법률안 정보를 수집했습니다.\n")
+            f.write("수집된 정보 필드:\n")
+            for key in assembly_data[0].keys():
+                f.write(f"- {key}\n")
 
 if __name__ == "__main__":
     main()

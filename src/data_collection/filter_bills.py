@@ -19,11 +19,11 @@ def filter_bills(input_file, target_results):
     result_counts_after = filtered_df['PROC_RESULT_CD'].value_counts().to_dict()
     
     now = datetime.now().strftime("%Y%m%d_%H%M%S")
-    output_csv = f"../data/filtered_bills_{now}.csv"
+    output_csv = f"../../data/filtered_bills_{now}.csv"
     filtered_df.to_csv(output_csv, index=False, encoding='utf-8-sig')
     print(f"필터링된 데이터가 '{output_csv}'에 저장되었습니다.")
     
-    output_txt = f"../data/filtering_results_{now}.txt"
+    output_txt = f"../../data/filtering_results_{now}.txt"
     with open(output_txt, 'w', encoding='utf-8') as f:
         f.write(f"원본 파일: {input_file}\n")
         f.write(f"필터링 기준: {', '.join(target_results)}\n\n")
@@ -44,7 +44,7 @@ def filter_bills(input_file, target_results):
     return output_csv, output_txt
 
 if __name__ == "__main__":
-    input_file = "../data/assembly_bills_21_20250317_175143.csv"
+    input_file = "../../data/assembly_bills_21_20250317_175143.csv"
     
     target_results = ["원안가결", "수정가결", "부결"]
     
