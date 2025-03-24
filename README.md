@@ -94,14 +94,3 @@
    Rscript src/analysis/run_wnominate.R
    python src/analysis/visualize_wnominate.py
    ```
-
-## 분석 예시
-
-### 2차원 이념 공간에서의 의원 분포
-![국회의원 이념 분포](src/data/analysis/wnominate_distribution_3parties.png)
-
-### 정당별 이념 분포 (1차원)
-![정당별 이념 분포](src/data/analysis/wnominate_party_boxplot_3parties.png)
-
-### 정당별 성능 지표 비교
-![정당별 성능 지표](src/data/analysis/wnominate_party_performance_3parties.png)
