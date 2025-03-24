@@ -4,6 +4,8 @@
 
 본 프로젝트는 대한민국 21대 국회 의원들의 표결 데이터를 수집하고 분석하여, W-NOMINATE 방법론을 통해 의원들의 이념적 좌표를 추정하는 연구입니다. 이를 통해 한국 정치 지형의 이념적 분포를 객관적으로 시각화하고 분석할 수 있습니다.
 
+![국회의원 이념 분포](src/data/analysis/wnominate_distribution_3parties.png)
+
 ## 주요 기능
 
 1. **데이터 수집**
@@ -48,6 +50,8 @@
    - 21대 국회의 이념적 분포는 주로 1차원(진보-보수)에 의해 설명됨
    - 더불어민주당 의원들은 주로 진보(음수) 영역에, 국민의힘 의원들은 주로 보수(양수) 영역에 위치
 
+   ![정당별 이념 분포](src/data/analysis/wnominate_party_boxplot_3parties.png)
+
 2. **모델 성능**
    - 1차원 모델만으로도 93.77%의 높은 표결 예측 정확도 달성
    - 2차원 모델은 94.06%의 정확도로 소폭 향상
@@ -55,6 +59,8 @@
 3. **정당별 분석**
    - 정당 내 결속력과 이념적 분포를 시각화 및 수치화
    - 정당별 GMP(기하평균 확률)와 CC(올바른 분류 비율) 비교 분석
+   
+   ![정당별 성능 지표](src/data/analysis/wnominate_party_performance_3parties.png)
 
 ## 기술 스택
 
@@ -90,3 +96,14 @@
    Rscript src/analysis/run_wnominate.R
    python src/analysis/visualize_wnominate.py
    ```
+
+## 분석 예시
+
+### 2차원 이념 공간에서의 의원 분포
+![국회의원 이념 분포](src/data/analysis/wnominate_distribution_3parties.png)
+
+### 정당별 이념 분포 (1차원)
+![정당별 이념 분포](src/data/analysis/wnominate_party_boxplot_3parties.png)
+
+### 정당별 성능 지표 비교
+![정당별 성능 지표](src/data/analysis/wnominate_party_performance_3parties.png)
