@@ -31,17 +31,10 @@
 ```
 21kr-assembly-w-nominate/
 ├── src/
+│   ├── data_collection/        - 데이터 수집 및 필터
 │   ├── analysis/               - 분석 스크립트
-│   │   ├── prepare_wnominate_data.R     - W-NOMINATE 데이터 준비
-│   │   ├── run_wnominate.R              - W-NOMINATE 모델 실행
-│   │   └── visualize_wnominate.py       - 결과 시각화
 │   ├── data/                   - 데이터 저장소
-│   │   ├── api_data/           - API 응답 데이터 (gitignore)
 │   │   └── analysis/           - 분석 결과 데이터
-│   │       ├── wnominate_results.csv    - W-NOMINATE 결과
-│   │       ├── vote_table_num.csv       - 표결 테이블
-│   │       ├── member_no_party.csv      - 의원 정보
-│   │       └── wnominate_해설.txt       - 결과 해설
 ```
 
 ## 주요 분석 결과
@@ -56,7 +49,7 @@
 
 3. **정당별 분석**
    - 정당 내 결속력과 이념적 분포를 시각화 및 수치화
-   - 정당별 GMP(기하평균 확률)와 CC(올바른 분류 비율) 비교 분석
+   - 정당별 기하평균과 분류성공비율 비교 분석
    
    ![정당별 성능 지표](src/data/analysis/wnominate_party_performance_3parties.png)
 
