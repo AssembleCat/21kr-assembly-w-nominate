@@ -34,7 +34,7 @@
 │   ├── data_collection/        - 데이터 수집 및 필터
 │   ├── analysis/               - 분석 스크립트
 │   ├── data/                   - 데이터 저장소
-│   │   └── analysis/           - 분석 결과 데이터
+        └── analysis/           - 분석 결과 데이터
 ```
 
 ## 주요 분석 결과
@@ -49,7 +49,7 @@
 
 3. **정당별 분석**
    - 정당 내 결속력과 이념적 분포를 시각화 및 수치화
-   - 정당별 기하평균과 분류성공비율 비교 분석
+   - 정당별 기하평균(GMP)과 분류성공비율(CC) 비교 분석
    
    ![정당별 성능 지표](src/data/analysis/wnominate_party_performance_3parties.png)
 
